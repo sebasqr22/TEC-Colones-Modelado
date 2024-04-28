@@ -1,5 +1,6 @@
 import { Component, ViewChildren, Renderer2, ElementRef, QueryList, OnInit } from '@angular/core';
 import {DatabaseService} from "../database.service";
+import {ElementosPantallaService} from "../elementos-pantalla.service";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
@@ -9,6 +10,8 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./vista-admin.component.css']
 })
 export class VistaAdminComponent {
+  //VARIABLES ----------------------------------------------------------------------------------------------------------
+
   busqueda = true;
   @ViewChildren('cambio_color') elementos: QueryList<ElementRef> | undefined;
   generarMaterial = this.fb.group({
@@ -22,6 +25,22 @@ export class VistaAdminComponent {
 
   pantallas = ['crearMaterial'];
   pantallaActual = 'crearMaterial';
+
+  elementosPantalla = this.elementosP.getElementos();
+  miembrosActuales = ['crearMaterial',
+    'crearMateriali',
+    'materiales'];
+
+  //VARIABLES ----------------------------------------------------------------------------------------------------------
+
+  actualizarMiembros(){
+    this.miembrosActuales.forEach(miembro => {
+      const elemento = document.getElementById(miembro);
+      // @ts-ignore
+      elemento.style.color = 'gray';
+    })
+  }
+
 
   cambiarPantalla(pantalla:string){
     let actual = document.getElementById(this.pantallaActual);
@@ -90,7 +109,8 @@ export class VistaAdminComponent {
 
 
 
-  constructor(private base: DatabaseService, private fb: FormBuilder, private renderer: Renderer2){}
+  constructor(private base: DatabaseService, private fb: FormBuilder, private renderer: Renderer2,
+              private elementosP:ElementosPantallaService){}
 
   ngOnInit():void{
     this.esconderTodas();
