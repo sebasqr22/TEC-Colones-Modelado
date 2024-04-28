@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from './database.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,5 +12,7 @@ import { DatabaseService } from './database.service';
 export class AppComponent {
   title = 'tec_colones';
 
-  constructor(private database: DatabaseService){}
+  constructor(private data: DatabaseService){
+    console.log(data.database);
+  }
 }

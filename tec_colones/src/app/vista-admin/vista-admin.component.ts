@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {DatabaseService} from "../database.service";
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-vista-admin',
@@ -6,12 +9,34 @@ import { Component } from '@angular/core';
   styleUrls: ['./vista-admin.component.css']
 })
 export class VistaAdminComponent {
+  generarMaterial = this.fb.group({
+    nombre: ['', Validators.required],
+    unidad: ['', Validators.required],
+    valorUnitario: ['', Validators.required],
+    estado: ['', Validators.required],
+    descripcion: ['', Validators.required]
+  });
+  crearMaterial(){
+    let primary;
+    if (this.generarMaterial.valid) {
+      primary = this.base.generateCode()
 
-  generarMaterial(){
-    const nombre = document.getElementById("nombreCrearMaterial") as HTMLSelectElement;
-    const unidad = document.getElementById("unidadCrearMaterial") as HTMLSelectElement;
-    const valor_unitario = document.getElementById("valorUnitarioCrearMaterial") as HTMLSelectElement;
-    const estado = document.getElementById("estadoCrearMaterial") as HTMLSelectElement;
-    const descrpcion = document.getElementById("descripcionCrearMaterial") as HTMLSelectElement;
+      const info = {
+        pk: primary,
+        ...this.generarMaterial.value,
+        fechaHora: this.base.getDateTime()
+      };
+
+      console.log(info);
+      this.base.escribirDatos('material/' + primary, info, this.generarMaterial);
+
+    } else {
+      alert("Existen Datos Inválidos!!!")
+    }
+
+  }
+
+
+  constructor(private base: DatabaseService, private fb: FormBuilder){
   }
 }
