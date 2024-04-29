@@ -1,8 +1,5 @@
 import { Component, ViewChildren, Renderer2, ElementRef, QueryList, OnInit } from '@angular/core';
-import {DatabaseService} from "../database.service";
-import {ElementosPantallaService} from "../elementos-pantalla.service";
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-vista-admin',
@@ -14,20 +11,15 @@ export class VistaAdminComponent {
 
   busqueda = true;
   @ViewChildren('cambio_color') elementos: QueryList<ElementRef> | undefined;
-  generarMaterial = this.fb.group({
-    nombre: ['', Validators.required],
-    unidad: ['', Validators.required],
-    valorUnitario: ['', Validators.required],
-    estado: ['', Validators.required],
-    descripcion: ['', Validators.required]
-  });
+
 
 
   pantallas = ['crearMaterial'];
   pantallaActual = 'crearMaterial';
 
-  elementosPantalla = this.elementosP.getElementos();
   miembrosActuales = ['crearMaterial', 'crearMateriali', 'materiales'];
+
+  pantalla_mostrando = 'crear-materiales'
 
 
   //colores
@@ -58,37 +50,12 @@ export class VistaAdminComponent {
 
 
   cambiarPantalla(pantalla:string){
-    let actual = document.getElementById(this.pantallaActual);
-    // @ts-ignore
-    actual.style.display = 'none';
 
-    this.pantallaActual = pantalla;
-    actual = document.getElementById(this.pantallaActual);
-    // @ts-ignore
-    actual.style.display = 'block';
-
-    this.actualizarMiembros(pantalla);
+    this.pantalla_mostrando = pantalla;
+    //this.actualizarMiembros(pantalla);
   }
 
-  crearMaterial() {
-    let primary;
-    if (this.generarMaterial.valid) {
-      primary = this.base.generateCode()
 
-      const info = {
-        pk: primary,
-        ...this.generarMaterial.value,
-        fechaHora: this.base.getDateTime()
-      };
-
-      console.log(info);
-      this.base.escribirDatos('material/' + primary, info, this.generarMaterial);
-
-    } else {
-      alert("Existen Datos Inválidos!!!")
-    }
-
-  }
 
   pantallaBusqueda(){
     this.busqueda = !this.busqueda;
@@ -112,10 +79,7 @@ export class VistaAdminComponent {
   }
 
 
-
-
-  constructor(private base: DatabaseService, private fb: FormBuilder, private renderer: Renderer2,
-              private elementosP:ElementosPantallaService){}
+  constructor(private renderer: Renderer2){}
 
 
   // FUNCIONES INICIALES------------------------------------------------------------------------------------------------
@@ -139,6 +103,9 @@ export class VistaAdminComponent {
       ele.style.color = this.encendido;
     })
   }
+
+
+
 
   ngOnInit():void{
     this.esconderTodas();

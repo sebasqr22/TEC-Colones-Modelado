@@ -7,11 +7,16 @@ export class ElementosPantallaService {
 
   elementosPantalla = {
     'admin': {
-        "crearMaterial": [
-          "crearMaterial",
+        "crear-materiales": [
+          "crearMateriala",
           "crearMateriali",
           "materiales"
-        ]
+        ],
+      'verListadoDeMateriales':[
+        'verListadoDeMaterialesa',
+        'verListadoDeMaterialesi',
+        'materiales'
+      ]
     }
   }
 

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { VistaUsuarioComponent } from './vista-usuario/vista-usuario.component';
 import { VistaAdminComponent } from './vista-admin/vista-admin.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { CrearMaterialesComponent } from './vista-admin/crear-materiales/crear-materiales.component';
 
 
 const appRoutes:Routes=[
@@ -18,6 +19,7 @@ const appRoutes:Routes=[
     AppComponent,
     VistaUsuarioComponent,
     VistaAdminComponent,
+    CrearMaterialesComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

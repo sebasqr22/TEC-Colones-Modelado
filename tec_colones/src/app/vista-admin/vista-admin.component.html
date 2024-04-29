@@ -45,8 +45,13 @@
 
 
             <div class="sb-sidenav-menu-heading" id="materiales">Materiales</div>
-            <a class="nav-link" id="crearMaterial" (click)="cambiarPantalla('crearMaterial')">
-              <i class="fa-solid fa-recycle" id="crearMateriali"></i> Crear Material
+
+            <a class="nav-link" id="crearMateriala" (click)="cambiarPantalla('crear-materiales')">
+              <i class="fa-solid fa-recycle" id="crearMateriali"></i>&nbsp;Crear Material
+            </a>
+
+            <a class="nav-link" id="verListadoDeMaterialesa" >
+              <i class="fa-solid fa-list" id="verListadoDeMaterialesi"></i>&nbsp;Listado de Materiales
             </a>
 
 
@@ -61,101 +66,12 @@
       </nav>
     </div>
 
-
+    <!-- PANTALLAS -->
     <div id="layoutSidenav_content">
-      <main>
 
-        <form [formGroup]="generarMaterial">
-          <div class="container-fluid px-4">
-            <h1 class="mt-4" >Crear Material</h1>
-            <div class="form-group row">
-
-              <!-- Nombre del Material (5 to 30 characters) -->
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="nombreCrearMaterial"
-                  maxlength="30"
-                  placeholder="Nombre del material (5-30 caracteres)"
-                  formControlName="nombre"
-                />
-                <label for="nombreCrearMaterial">Nombre del Material</label>
-                <div class="invalid-feedback">El nombre debe tener entre 5 y 30 caracteres.</div>
-              </div>
-
-              <br> <br> <br> <br>
-
-              <!-- Unidad (Select from valid options) -->
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <select
-                  class="form-control form-control-user"
-                  id="unidadCrearMaterial"
-                  default="Kilogramo"
-                  formControlName="unidad"
-                >
-                  <option value="Kilogramo">Kilogramo</option>
-                  <option value="Litro">Litro</option>
-                  <option value="Unidad">Unidad</option>
-                </select>
-                <label for="unidadCrearMaterial">Unidad</label>
-                <div class="invalid-feedback">Seleccione una unidad válida (Kilogramo, Litro, Unidad).</div>
-              </div>
-
-
-              <br> <br> <br> <br>
-
-              <!-- Valor Unitario (Numeric, 0 to 100,000) -->
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input
-                  type="number"
-                  class="form-control form-control-user"
-                  id="valorUnitarioCrearMaterial"
-                  min="0"
-                  max="100000"
-                  placeholder="Valor unitario (0 - 100,000 Tec-Colones"
-                  formControlName="valorUnitario"
-                />
-                <label for="valorUnitarioCrearMaterial">Valor Unitario</label>
-                <div class="invalid-feedback">El valor debe ser entre 0 y 100,000 Tec-Colones.</div>
-              </div>
-
-              <br> <br> <br> <br>
-
-              <!-- Estado (Default to Activo) -->
-              <div class="col-sm">
-                <select class="form-control form-control-user" id="estadoCrearMaterial" formControlName="estado">
-                  <option value="activo">Activo</option>
-                  <option value="inactivo">Inactivo</option>
-                </select>
-                <label for="estadoCrearMaterial">Estado</label>
-              </div>
-
-              <!-- Descripción (Up to 1,000 characters) -->
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                    <textarea
-                      class="form-control"
-                      id="descripcionCrearMaterial"
-                      cols="50"
-                      maxlength="1000"
-                      placeholder="Descripción (opcional, hasta 1,000 caracteres)"
-                      formControlName="descripcion"
-                    ></textarea>
-                <label for="descripcionCrearMaterial">Descripción</label>
-              </div>
-
-              <br> <br> <br> <br>
-
-
-              <a class="btn btn-outline-success btn-user btn-block" (click)="crearMaterial()">
-                Guardar
-              </a>
-
-            </div>
-          </div>
-        </form>
-      </main>
-
+      <div *ngIf="pantalla_mostrando === 'crear-materiales'">
+        <app-crear-materiales></app-crear-materiales>
+      </div>
 
       <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
@@ -170,5 +86,8 @@
         </div>
       </footer>
     </div>
+
   </div>
+
+
 </div>
