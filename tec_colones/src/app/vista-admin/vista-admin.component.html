@@ -45,11 +45,8 @@
 
 
             <div class="sb-sidenav-menu-heading" id="materiales">Materiales</div>
-            <a class="nav-link" (click)="cambiarPantalla('crearMaterial')">
-              <div class="sb-nav-link-icon">
-                <i class="fa-solid fa-recycle" id="crearMateriali"></i>
-              </div>
-              Crear Material
+            <a class="nav-link" id="crearMaterial" (click)="cambiarPantalla('crearMaterial')">
+              <i class="fa-solid fa-recycle" id="crearMateriali"></i> Crear Material
             </a>
 
 
@@ -69,8 +66,8 @@
       <main>
 
         <form [formGroup]="generarMaterial">
-          <div class="container-fluid px-4" id="crearMaterial">
-            <h1 class="mt-4">Crear Material</h1>
+          <div class="container-fluid px-4">
+            <h1 class="mt-4" >Crear Material</h1>
             <div class="form-group row">
 
               <!-- Nombre del Material (5 to 30 characters) -->

@@ -6,14 +6,12 @@ import { Injectable } from '@angular/core';
 export class ElementosPantallaService {
 
   elementosPantalla = {
-    'materiales':{
-      'crearMaterial':[
-        'crearMaterial',
-        'crearMateriali',
-        'materiales'
-      ]
-
-
+    'admin': {
+        "crearMaterial": [
+          "crearMaterial",
+          "crearMateriali",
+          "materiales"
+        ]
     }
   }
 
