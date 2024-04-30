@@ -24,7 +24,7 @@ export class CrearMaterialesComponent {
   crearMaterial() {
     let primary;
     if (this.generarMaterial.valid) {
-      primary = this.base.generateCode()
+      primary = this.base.generateCode('M');
 
       const info = {
         pk: primary,

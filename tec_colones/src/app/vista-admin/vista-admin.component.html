@@ -55,7 +55,20 @@
             </a>
 
 
+            <div class="sb-sidenav-menu-heading" id="sedes">Sedes</div>
+            <a class="nav-link" id="crear-sedesa" (click)="cambiarPantalla('crear-sedes')">
+              <i class="fa-solid fa-tower-observation" id="crear-sedesi"></i>&nbsp;Crear Sedes
+            </a>
+
+            <a class="nav-link" id="ver-sedesa" (click)="cambiarPantalla('ver-sedes')">
+              <i class="fa-solid fa-house" id="ver-sedesi"></i>&nbsp;Ver Sedes
+            </a>
+
           </div>
+
+
+
+
         </div>
 
 
@@ -75,6 +88,14 @@
 
       <div *ngIf="pantalla_mostrando === 'ver-materiales'">
         <app-ver-materiales></app-ver-materiales>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'crear-sedes'">
+        <app-crear-sedes></app-crear-sedes>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'ver-sedes'">
+        <app-ver-sedes></app-ver-sedes>
       </div>
 
       <footer class="py-4 bg-light mt-auto">

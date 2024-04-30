@@ -53,13 +53,14 @@ export class DatabaseService {
     return dateTime;
   }
 
-  generateCode(length = 12): string {
+  generateCode(llave:string): string {
+    const length = 12
     let result = '';
     const charactersLength = this.characters.length;
     for (let i = 0; i < length; i++) {
       result += this.characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    return "M-" + result;
+    return llave + '-' + result;
   }
 
 
