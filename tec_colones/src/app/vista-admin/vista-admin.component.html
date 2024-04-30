@@ -50,7 +50,7 @@
               <i class="fa-solid fa-recycle" id="crearMateriali"></i>&nbsp;Crear Material
             </a>
 
-            <a class="nav-link" id="verListadoDeMaterialesa" >
+            <a class="nav-link" id="verListadoDeMaterialesa" (click)="cambiarPantalla('ver-materiales')">
               <i class="fa-solid fa-list" id="verListadoDeMaterialesi"></i>&nbsp;Listado de Materiales
             </a>
 
@@ -71,6 +71,10 @@
 
       <div *ngIf="pantalla_mostrando === 'crear-materiales'">
         <app-crear-materiales></app-crear-materiales>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'ver-materiales'">
+        <app-ver-materiales></app-ver-materiales>
       </div>
 
       <footer class="py-4 bg-light mt-auto">

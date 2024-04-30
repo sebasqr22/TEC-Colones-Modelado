@@ -52,6 +52,7 @@ export class VistaAdminComponent {
   cambiarPantalla(pantalla:string){
 
     this.pantalla_mostrando = pantalla;
+    console.log(this.pantalla_mostrando);
     //this.actualizarMiembros(pantalla);
   }
 

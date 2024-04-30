@@ -62,6 +62,24 @@ export class DatabaseService {
     return "M-" + result;
   }
 
+
+  async get(ruta: string): Promise<any> {
+    try {
+      // @ts-ignore
+      const dbRef = ref(this.database, ruta);
+      const snapshot = await get(dbRef);
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log('No existen datos en la ruta:', ruta);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al leer datos:', error);
+      return null;
+    }
+  }
+
   constructor() {
     this.app = initializeApp(this.firebase);
     this.database = getDatabase(this.app);
