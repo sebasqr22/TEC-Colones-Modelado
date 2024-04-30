@@ -13,49 +13,16 @@ export class VistaAdminComponent {
   @ViewChildren('cambio_color') elementos: QueryList<ElementRef> | undefined;
 
 
-
-  pantallas = ['crearMaterial'];
-  pantallaActual = 'crearMaterial';
-
-  miembrosActuales = ['crearMaterial', 'crearMateriali', 'materiales'];
-
   pantalla_mostrando = 'crear-materiales'
 
-
-  //colores
-
-  encendido = 'white';
-  apagado = '#6c757d';
-
   //VARIABLES ----------------------------------------------------------------------------------------------------------
-
-  actualizarMiembros(pantalla:string){
-    this.miembrosActuales.forEach(miembro => {
-      const elemento = document.getElementById(miembro);
-      console.log(elemento);
-      // @ts-ignore
-      elemento.style.color = this.apagado;
-    }) //apagar miembros antiguios
-
-
-    // @ts-ignore
-    this.miembrosActuales = this.elementosPantalla['admin'][pantalla];
-    this.miembrosActuales.forEach(miembro => {
-      const elemento = document.getElementById(miembro);
-      console.log(elemento);
-      // @ts-ignore
-      elemento.style.color = this.encendido;
-    }) //encender miembros nuevos
-  }
 
 
   cambiarPantalla(pantalla:string){
 
     this.pantalla_mostrando = pantalla;
     console.log(this.pantalla_mostrando);
-    //this.actualizarMiembros(pantalla);
   }
-
 
 
   pantallaBusqueda(){
@@ -71,46 +38,12 @@ export class VistaAdminComponent {
     }
   }
 
-
-  cambiarColor(color:string) {
-    // @ts-ignore
-    this.elementos.forEach(elemento => {
-      this.renderer.setStyle(elemento.nativeElement, 'color', color);
-    });
-  }
-
-
   constructor(private renderer: Renderer2){}
 
 
   // FUNCIONES INICIALES------------------------------------------------------------------------------------------------
-  esconderTodas(){
-    let actual ;
-    this.pantallas.forEach(pantalla => {
-      actual = document.getElementById(pantalla);
-      // @ts-ignore
-      actual.style.display = 'none';
-    })
-    actual = document.getElementById(this.pantallaActual);
-    // @ts-ignore
-    actual.style.display = 'block';
-  }
-
-
-  actualizarEncendidos(){
-    this.miembrosActuales.forEach(miembro => {
-      const ele = document.getElementById(miembro);
-      // @ts-ignore
-      ele.style.color = this.encendido;
-    })
-  }
-
-
-
 
   ngOnInit():void{
-    this.esconderTodas();
-    this.actualizarEncendidos();
   }
 
 
