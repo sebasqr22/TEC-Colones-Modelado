@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class DatabaseService {
-  private readonly characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   firebase = {
     apiKey: "AIzaSyDe7h2KiiCpKoZRoj8HSvAyTf2g0255Pfw",
     authDomain: "tec-colones.firebaseapp.com",
@@ -46,23 +45,6 @@ export class DatabaseService {
 
     this.reiniciarDatos(error,form);
   }
-
-  getDateTime(): string {
-    const now = new Date();
-    const dateTime = formatDate(now, 'yyyy-MM-dd HH:mm:ss', 'en-CR');
-    return dateTime;
-  }
-
-  generateCode(llave:string): string {
-    const length = 12
-    let result = '';
-    const charactersLength = this.characters.length;
-    for (let i = 0; i < length; i++) {
-      result += this.characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return llave + '-' + result;
-  }
-
 
   async get(ruta: string): Promise<any> {
     try {

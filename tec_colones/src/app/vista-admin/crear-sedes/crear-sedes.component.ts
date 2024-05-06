@@ -4,6 +4,9 @@ import {ElementosPantallaService} from "../elementos-pantalla.service";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
+import {LlaveService} from "../llave.service";
+import {FechaHoraService} from "../fecha-hora.service";
+
 @Component({
   selector: 'app-crear-sedes',
   templateUrl: './crear-sedes.component.html',
@@ -20,13 +23,13 @@ export class CrearSedesComponent {
   crearSede(){
     let primary;
     if (this.form.valid) {
-      primary = this.base.generateCode('S');
+      primary = this.llave.generateCode('S');
 
       const info = {
         pk: primary,
         ...this.form.value,
         estado: 'activo',
-        fechaHora: this.base.getDateTime()
+        fechaHora: this.fechaHora.getDateTime()
       };
 
       console.log(info);
@@ -38,6 +41,8 @@ export class CrearSedesComponent {
   }
 
 
-  constructor(private base: DatabaseService, private fb: FormBuilder) {
+  constructor(private base: DatabaseService, private fb: FormBuilder,
+              private fechaHora:FechaHoraService,
+              private llave:LlaveService) {
   }
 }

@@ -1,5 +1,9 @@
 import { Component, ViewChildren, Renderer2, ElementRef, QueryList, OnInit } from '@angular/core';
 import {DatabaseService} from "../database.service";
+
+import {LlaveService} from "../llave.service";
+import {FechaHoraService} from "../fecha-hora.service";
+
 import {ElementosPantallaService} from "../elementos-pantalla.service";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -17,19 +21,19 @@ export class CrearMaterialesComponent {
     unidad: ['', Validators.required],
     valorUnitario: ['', Validators.required],
     estado: ['', Validators.required],
-    descripcion: ['', Validators.required]
+    descripcion: ['']
   });
 
 
   crearMaterial() {
     let primary;
     if (this.generarMaterial.valid) {
-      primary = this.base.generateCode('M');
+      primary = this.llave.generateCode('M');
 
       const info = {
         pk: primary,
         ...this.generarMaterial.value,
-        fechaHora: this.base.getDateTime()
+        fechaHora: this.fechaHora.getDateTime()
       };
 
       console.log(info);
@@ -43,5 +47,7 @@ export class CrearMaterialesComponent {
 
 
   constructor(private base: DatabaseService, private fb: FormBuilder, private renderer: Renderer2,
-              private elementosP:ElementosPantallaService){}
+              private elementosP:ElementosPantallaService,
+              private fechaHora:FechaHoraService,
+              private llave:LlaveService){}
 }
