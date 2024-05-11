@@ -64,6 +64,11 @@
               <i class="fa-solid fa-house" id="ver-sedesi"></i>&nbsp;Ver Sedes
             </a>
 
+            <div class="sb-sidenav-menu-heading" id="centros">Centros de Acopio</div>
+            <a class="nav-link" id="crear-centrosa" (click)="cambiarPantalla('crear-centros')">
+              <i class="fa-solid fa-arrows-to-circle" id="crear-centrosi"></i>&nbsp;Crear Centros
+            </a>
+
           </div>
 
 
@@ -96,6 +101,10 @@
 
       <div *ngIf="pantalla_mostrando === 'ver-sedes'">
         <app-ver-sedes></app-ver-sedes>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'crear-centros'">
+        <app-crear-centros></app-crear-centros>
       </div>
 
       <footer class="py-4 bg-light mt-auto">
