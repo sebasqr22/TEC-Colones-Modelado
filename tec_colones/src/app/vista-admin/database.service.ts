@@ -50,7 +50,7 @@ export class DatabaseService {
           })
           .catch((error) => {
             console.error('Error al escribir datos:', error);
-            alert('Error al escribir los datos!!!');
+            alert(`Error presente: ${error}`);
             this.reiniciarDatos(true, form);
           });
       }

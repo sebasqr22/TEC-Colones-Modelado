@@ -69,6 +69,10 @@
               <i class="fa-solid fa-arrows-to-circle" id="crear-centrosi"></i>&nbsp;Crear Centros
             </a>
 
+            <a class="nav-link" id="ver-centrosa" (click)="cambiarPantalla('ver-centros')">
+              <i class="fa-solid fa-building" id="ver-centrosi"></i>&nbsp;Ver Centros
+            </a>
+
           </div>
 
 
@@ -105,6 +109,10 @@
 
       <div *ngIf="pantalla_mostrando === 'crear-centros'">
         <app-crear-centros></app-crear-centros>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'ver-centros'">
+        <app-ver-centros></app-ver-centros>
       </div>
 
       <footer class="py-4 bg-light mt-auto">
