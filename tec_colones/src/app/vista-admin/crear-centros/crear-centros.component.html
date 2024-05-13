@@ -1,0 +1,81 @@
+<div id="crearMaterial">
+  <main>
+    <form [formGroup]="form">
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Crear Centros de Acopio</h1>
+        <div class="form-group row">
+
+
+          <!-- Numero de celcho (8 characters) -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="number"
+              class="form-control form-control-user"
+              id="telefono"
+              placeholder="Número de Contacto"
+              formControlName="telefono"
+              max="99999999"
+
+            />
+            <label for="telefono">Número de Contacto</label>
+
+            <div class="invalid-feedback">Ingrese un número válido.</div>
+          </div>
+
+          <br> <br> <br> <br>
+
+
+          <!-- Sede (Select from valid options) -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <select class="form-control form-control-user" id="sede" formControlName="sede" [(ngModel)]="valorSeleccionado">
+              <option *ngFor="let dato of datos" [ngValue]="dato">{{ dato['nombre'] }}</option>
+            </select>
+            <label for="sede">Sede</label>
+            <div class="invalid-feedback">Seleccione una Sede válida.</div>
+          </div>
+
+          <br> <br> <br> <br>
+
+
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="ubicacion"
+              maxlength="100"
+              placeholder="Ubicación dentro de la Sede (5-100 caracteres)"
+              formControlName="ubicacion"
+            />
+            <label for="ubicacion">Ubicación dentro de la Sede</label>
+            <div class="invalid-feedback">La Ubicación dentro de la Sede entre 5 y 100 caracteres.</div>
+          </div>
+
+          <br> <br> <br> <br>
+
+
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="codigo"
+              maxlength="10"
+              placeholder="Código Identificador (1-10 caracteres)"
+              formControlName="codigo"
+            />
+            <label for="codigo">Código Identificador</label>
+            <div class="invalid-feedback">Código Identificador.</div>
+          </div>
+
+          <br> <br> <br> <br>
+
+
+
+          <a class="btn btn-outline-success btn-user btn-block" (click)="crearCentro()">
+            Guardar
+          </a>
+
+        </div>
+      </div>
+    </form>
+  </main>
+</div>

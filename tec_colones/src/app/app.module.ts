@@ -10,6 +10,8 @@ import { CrearMaterialesComponent } from './vista-admin/crear-materiales/crear-m
 import { VerMaterialesComponent } from './vista-admin/ver-materiales/ver-materiales.component';
 import { CrearSedesComponent } from './vista-admin/crear-sedes/crear-sedes.component';
 import { VerSedesComponent } from './vista-admin/ver-sedes/ver-sedes.component';
+import { CrearCentrosComponent } from './vista-admin/crear-centros/crear-centros.component';
+import { VerCentrosComponent } from './vista-admin/ver-centros/ver-centros.component';
 
 
 const appRoutes:Routes=[
@@ -26,6 +28,8 @@ const appRoutes:Routes=[
     VerMaterialesComponent,
     CrearSedesComponent,
     VerSedesComponent,
+    CrearCentrosComponent,
+    VerCentrosComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

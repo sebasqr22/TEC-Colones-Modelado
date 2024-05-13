@@ -28,22 +28,37 @@ export class DatabaseService {
   }
 
 
-  escribirDatos(ruta: string, datos: any, form:FormGroup) {
-    var error = false;
+  escribirDatos(ruta: string, datos: any, form: FormGroup) {
+    const identificador = datos.identificador; // Obtener el identificador del objeto datos
+
     // @ts-ignore
     const dbRef = ref(this.database, ruta);
-    set(dbRef, datos)
-      .then(() => {
-        alert('Datos escritos correctamente');
-        error = false;
-      })
-      .catch((error) => {
-        console.error('Error al escribir datos:', error);
-        alert('Error al escribir los datos!!!')
-        error = true
-      });
 
-    this.reiniciarDatos(error,form);
+    // Primero, verificamos si el identificador ya existe
+    get(dbRef).then((snapshot) => {
+      console.log(snapshot.exists());
+      if (snapshot.exists()) {
+
+        alert(`El identificador "${snapshot.val().pk}" ya existe. No se escribieron los datos.`);
+
+      } else {
+        // Si no hay datos existentes, escribir los nuevos datos
+        set(dbRef, datos)
+          .then(() => {
+            alert('Datos escritos correctamente');
+            this.reiniciarDatos(false, form);
+          })
+          .catch((error) => {
+            console.error('Error al escribir datos:', error);
+            alert(`Error presente: ${error}`);
+            this.reiniciarDatos(true, form);
+          });
+      }
+    }).catch((error) => {
+      console.error('Error al leer datos existentes:', error);
+      alert('Error al verificar los datos existentes!!!');
+      this.reiniciarDatos(true, form);
+    });
   }
 
   async get(ruta: string): Promise<any> {
