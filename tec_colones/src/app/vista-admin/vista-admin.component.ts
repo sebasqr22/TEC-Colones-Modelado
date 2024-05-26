@@ -1,4 +1,5 @@
 import { Component, ViewChildren, Renderer2, ElementRef, QueryList, OnInit } from '@angular/core';
+import {DatosExtraidosService} from "./Services/datos-extraidos.service";
 
 
 @Component({
@@ -38,7 +39,8 @@ export class VistaAdminComponent {
     }
   }
 
-  constructor(private renderer: Renderer2){}
+  constructor(private renderer: Renderer2, private datos_extraidos: DatosExtraidosService){
+  }
 
 
   // FUNCIONES INICIALES------------------------------------------------------------------------------------------------
