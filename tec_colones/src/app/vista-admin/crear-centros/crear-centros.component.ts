@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import {DatabaseService} from "../database.service";
-import {FechaHoraService} from "../fecha-hora.service";
-import {LlaveService} from "../llave.service";
+import {DatabaseService} from "../Services/database.service";
+import {FechaHoraService} from "../Services/fecha-hora.service";
+import {LlaveService} from "../Services/llave.service";
 import { BrowserModule } from '@angular/platform-browser';
 
 @Component({

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DatabaseService} from "../database.service";
+import {DatabaseService} from "../Services/database.service";
 
 @Component({
   selector: 'app-ver-materiales',

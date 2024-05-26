@@ -1,11 +1,11 @@
 import { Component, ViewChildren, Renderer2, ElementRef, QueryList, OnInit } from '@angular/core';
-import {DatabaseService} from "../database.service";
-import {ElementosPantallaService} from "../elementos-pantalla.service";
+import {DatabaseService} from "../Services/database.service";
+import {ElementosPantallaService} from "../Services/elementos-pantalla.service";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
-import {LlaveService} from "../llave.service";
-import {FechaHoraService} from "../fecha-hora.service";
+import {LlaveService} from "../Services/llave.service";
+import {FechaHoraService} from "../Services/fecha-hora.service";
 
 @Component({
   selector: 'app-crear-sedes',
