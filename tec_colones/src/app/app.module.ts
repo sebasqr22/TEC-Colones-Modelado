@@ -12,6 +12,8 @@ import { CrearSedesComponent } from './vista-admin/crear-sedes/crear-sedes.compo
 import { VerSedesComponent } from './vista-admin/ver-sedes/ver-sedes.component';
 import { CrearCentrosComponent } from './vista-admin/crear-centros/crear-centros.component';
 import { VerCentrosComponent } from './vista-admin/ver-centros/ver-centros.component';
+import { AsignacionTecColonesComponent } from './vista-admin/asignacion-tec-colones/asignacion-tec-colones.component';
+import { VerHistorialCentrosComponent } from './vista-admin/ver-historial-centros/ver-historial-centros.component';
 
 
 const appRoutes:Routes=[
@@ -30,6 +32,8 @@ const appRoutes:Routes=[
     VerSedesComponent,
     CrearCentrosComponent,
     VerCentrosComponent,
+    AsignacionTecColonesComponent,
+    VerHistorialCentrosComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

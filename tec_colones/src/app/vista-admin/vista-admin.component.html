@@ -54,6 +54,10 @@
               <i class="fa-solid fa-list" id="verListadoDeMaterialesi"></i>&nbsp;Listado de Materiales
             </a>
 
+            <a class="nav-link" id="asignaciona" (click)="cambiarPantalla('asignacion-tec-colones')">
+              <i class="fa-solid fa-list" id="asignacioni"></i>&nbsp;Asignación Tec-Colones
+            </a>
+
 
             <div class="sb-sidenav-menu-heading" id="sedes">Sedes</div>
             <a class="nav-link" id="crear-sedesa" (click)="cambiarPantalla('crear-sedes')">
@@ -71,6 +75,10 @@
 
             <a class="nav-link" id="ver-centrosa" (click)="cambiarPantalla('ver-centros')">
               <i class="fa-solid fa-building" id="ver-centrosi"></i>&nbsp;Ver Centros
+            </a>
+
+            <a class="nav-link" id="ver-historial-centrosa" (click)="cambiarPantalla('ver-historial-centros')">
+              <i class="fa-solid fa-building" id="ver-historial-centrosi"></i>&nbsp;Ver Historial
             </a>
 
           </div>
@@ -113,6 +121,14 @@
 
       <div *ngIf="pantalla_mostrando === 'ver-centros'">
         <app-ver-centros></app-ver-centros>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'asignacion-tec-colones'">
+        <app-asignacion-tec-colones></app-asignacion-tec-colones>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'ver-historial-centros'">
+        <app-ver-historial-centros></app-ver-historial-centros>
       </div>
 
       <footer class="py-4 bg-light mt-auto">
