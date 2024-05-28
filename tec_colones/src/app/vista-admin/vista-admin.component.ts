@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import {DatabaseService} from "../database.service";
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { Component, ViewChildren, Renderer2, ElementRef, QueryList, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-vista-admin',
@@ -9,34 +7,45 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./vista-admin.component.css']
 })
 export class VistaAdminComponent {
-  generarMaterial = this.fb.group({
-    nombre: ['', Validators.required],
-    unidad: ['', Validators.required],
-    valorUnitario: ['', Validators.required],
-    estado: ['', Validators.required],
-    descripcion: ['', Validators.required]
-  });
-  crearMaterial(){
-    let primary;
-    if (this.generarMaterial.valid) {
-      primary = this.base.generateCode()
+  //VARIABLES ----------------------------------------------------------------------------------------------------------
 
-      const info = {
-        pk: primary,
-        ...this.generarMaterial.value,
-        fechaHora: this.base.getDateTime()
-      };
+  busqueda = true;
+  @ViewChildren('cambio_color') elementos: QueryList<ElementRef> | undefined;
 
-      console.log(info);
-      this.base.escribirDatos('material/' + primary, info, this.generarMaterial);
 
-    } else {
-      alert("Existen Datos Inválidos!!!")
+  pantalla_mostrando = 'crear-materiales'
+
+  //VARIABLES ----------------------------------------------------------------------------------------------------------
+
+
+  cambiarPantalla(pantalla:string){
+
+    this.pantalla_mostrando = pantalla;
+    console.log(this.pantalla_mostrando);
+  }
+
+
+  pantallaBusqueda(){
+    this.busqueda = !this.busqueda;
+    const todo = document.getElementById('todo');
+    if(this.busqueda){
+      // @ts-ignore
+      todo.className = '';
     }
+    else{
+      // @ts-ignore
+      todo.className = 'sb-sidenav-toggled';
+    }
+  }
 
+  constructor(private renderer: Renderer2){}
+
+
+  // FUNCIONES INICIALES------------------------------------------------------------------------------------------------
+
+  ngOnInit():void{
   }
 
 
-  constructor(private base: DatabaseService, private fb: FormBuilder){
-  }
+  // FUNCIONES INICIALES------------------------------------------------------------------------------------------------
 }

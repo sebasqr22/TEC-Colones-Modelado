@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatabaseService } from './database.service';
 
 
 @Component({
@@ -11,8 +10,24 @@ import { DatabaseService } from './database.service';
 
 export class AppComponent {
   title = 'tec_colones';
+  tipoUsuario = 'admin';
+  busqueda = true;
 
-  constructor(private data: DatabaseService){
-    console.log(data.database);
+
+
+  pantallaBusqueda(){
+    this.busqueda = !this.busqueda;
+    const todo = document.getElementById('todo');
+    if(this.busqueda){
+      // @ts-ignore
+      todo.className = '';
+    }
+    else{
+      // @ts-ignore
+      todo.className = 'sb-sidenav-toggled';
+    }
+  }
+
+  constructor(){
   }
 }
