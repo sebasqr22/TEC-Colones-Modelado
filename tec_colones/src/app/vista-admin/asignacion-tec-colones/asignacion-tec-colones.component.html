@@ -1,29 +1,28 @@
 <div id="crearMaterial">
   <main>
-      <div class="container-fluid px-4">
-        <h1 class="mt-4">Asignación de Tec-Colones a Estudiante</h1>
-        <div class="form-group row">
-
-
+    <form [formGroup]="form">
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Asignación de Tec-Colones a Estudiante</h1>
+      <div class="form-group row">
           <!-- Sede (Select from valid options) -->
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <select
-              class="form-control form-control-user"
-              id="sede"
-            >
-
+            <select class="form-control form-control-user" id="sedex"
+                    formControlName="sede" (change)="cambiarCentros()">
+              <option *ngFor="let dato of sedes" [ngValue]="dato">{{ dato['nombre'] }}</option>
             </select>
-            <label for="sede">Sede</label>
+            <label for="sedex">Sede</label>
             <div class="invalid-feedback">Seleccione una Sede válida.</div>
           </div>
+
 
           <!-- Centro (Select from valid options) -->
           <div class="col-sm-6 mb-3 mb-sm-0">
             <select
               class="form-control form-control-user"
               id="centro"
+              formControlName="centro"
             >
-
+              <option *ngFor="let dato of centros_aux" [ngValue]="dato">{{ dato['ubicacion'] }}</option>
             </select>
             <label for="centro">Centro</label>
             <div class="invalid-feedback">Seleccione un centro válido.</div>
@@ -37,6 +36,7 @@
               id="carneEstudiante"
               maxlength="10"
               placeholder="Carne del estudiante"
+              formControlName="carnet"
             />
             <label for="carneEstudiante">Carne del estudiante</label>
             <div class="invalid-feedback">El carne debe tener 10 caracteres.</div>
@@ -47,8 +47,9 @@
             <select
               class="form-control form-control-user"
               id="material"
+              formControlName="material"
             >
-
+              <option *ngFor="let dato of materiales" [ngValue]="dato">{{ dato['nombre'] }}</option>
             </select>
             <label for="material">Material</label>
             <div class="invalid-feedback">Seleccione un material válido.</div>
@@ -58,34 +59,53 @@
               class="form-control form-control-user"
               id="cantidadMaterial"
               placeholder="Cantidad de material"
+              formControlName="cantidad"
             />
             <label for="cantidadMaterial">Cantidad de material</label>
             <div class="invalid-feedback">Seleccione una cantidad válido.</div>
 
             <br><br>
-            <a class="btn btn-outline-success btn-user btn-block">
-              Agregar
-            </a>
+
 
             <br><br>
           </div>
 
-          <div style="margin: 0% 1% 1% 0%; height: 200px">
+
+
+
+
+
+      </div>
+    </div>
+    </form>
+    <div class="container-fluid px-4">
+      <div class="form-group row">
+
+        <a class="btn btn-outline-success btn-user btn-block" (click)="agregarMaterial()">
+          Agregar
+        </a>
+      </div>
+        <br> <br>
+
+        <div style="margin: 0% 1% 1% 0%; height: 200px">
             <textarea
               style="width: 100%; height: 90%"
               id="materiales"
+              readonly
+              [(ngModel)]="materialesTexto"
             >
 
             </textarea>
-            <label for="materiales">Listado de materiales</label>
-          </div>
+          <label for="materiales">Listado de materiales</label>
 
+          <br><br>
 
-          <a class="btn btn-outline-success btn-user btn-block" style="margin: 0% 1% 1% 0%">
+          <a class="btn btn-outline-success btn-user btn-block" style="margin: 0% 1% 1% 0%" (click)="guardarTransaccion()">
             Guardar
           </a>
 
-        </div>
       </div>
+
+    </div>
   </main>
 </div>

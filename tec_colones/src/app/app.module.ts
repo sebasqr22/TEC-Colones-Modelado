@@ -35,13 +35,14 @@ const appRoutes:Routes=[
     AsignacionTecColonesComponent,
     VerHistorialCentrosComponent,
   ],
-  imports: [
-    RouterModule.forRoot(appRoutes),
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+    imports: [
+        RouterModule.forRoot(appRoutes),
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
