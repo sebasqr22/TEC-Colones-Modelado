@@ -111,7 +111,7 @@ export class AsignacionTecColonesComponent implements OnInit{
       };
       //this.base.escribirDatos(`historial/${valores.carnet}`, nuevo, this.form);
       // @ts-ignore
-      this.listdo.push(valores);
+      this.listdo.push(nuevo);
       console.log(this.listdo);
       // @ts-ignore
       this.pk = this.form.value.carnet;
@@ -130,8 +130,6 @@ export class AsignacionTecColonesComponent implements OnInit{
   guardarTransaccion(){
     let data = {
       ...JSON.parse(JSON.stringify(this.listdo)),
-      fechaHora: this.fechaHora.getDateTime(),
-      pk: this.pk
     }
     const llave = this.llave.generateCode("T" + this.pk) ;
     this.base.escribirDatos(`historial/${this.pk}/${llave}/`, data, this.form);
