@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VistaUsuarioComponent } from './vista-usuario/vista-usuario.component';
 import { VistaAdminComponent } from './vista-admin/vista-admin.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CrearMaterialesComponent } from './vista-admin/crear-materiales/crear-materiales.component';
 import { VerMaterialesComponent } from './vista-admin/ver-materiales/ver-materiales.component';
 import { CrearSedesComponent } from './vista-admin/crear-sedes/crear-sedes.component';
@@ -39,7 +39,8 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
