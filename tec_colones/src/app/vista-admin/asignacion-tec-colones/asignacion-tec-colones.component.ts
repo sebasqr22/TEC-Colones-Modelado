@@ -104,6 +104,7 @@ export class AsignacionTecColonesComponent implements OnInit{
 
   agregarMaterial(){
     const valores = this.form.value;
+    console.log(valores);
     if(this.form.valid){
       const nuevo = {
         ...valores,

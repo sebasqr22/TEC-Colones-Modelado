@@ -70,11 +70,19 @@ export class VerHistorialCentrosComponent implements OnInit {
     return fecha >= fechaInicio && fecha <= fechaFin;
   }
 
+  validaInformacionVacia(){
+    if(this.materialesTexto == ""){
+      alert("No se encontró información...")
+    }
+  }
+
   recorrerJsonDentro(objeto:JSON){
     // @ts-ignore
     const inicio:Date = new Date(this.form.value.fechaInicio);
     // @ts-ignore
     const final:Date = new Date(this.form.value.fechaFin);
+
+    let contador = 0;
 
     for (let clave in objeto) {
       if (objeto.hasOwnProperty(clave)) {
@@ -82,15 +90,17 @@ export class VerHistorialCentrosComponent implements OnInit {
         const elemento = objeto[clave];
         const fecha:Date = new Date(elemento.fechaHora);
 
+        console.log(elemento);
+
         if(this.rangoFecha(fecha, inicio, final) && elemento.centro.pk == this.centro){
-          this.materialesTexto += `${elemento.material.nombre} \t ₡${Number(elemento.material.valorUnitario) * Number(elemento.cantidad)} \t Carnet: ${elemento.carnet}\n`
+          this.materialesTexto += `Carnet: ${elemento.carnet} \t\t\t ${elemento.material.nombre} \t\t\t ₡${Number(elemento.material.valorUnitario) * Number(elemento.cantidad)}\t\t\t ${elemento.fechaHora}\n`
+          contador ++;
         }
 
       }
     }
-    if(this.materialesTexto == ""){
-      this.materialesTexto = "No se encontró información..."
-    }
+    this.validaInformacionVacia();
+
   }
 
   recorrerJson(objeto:JSON){
@@ -117,8 +127,6 @@ export class VerHistorialCentrosComponent implements OnInit {
           const elemento = this.transacciones[clave];
           this.recorrerJson(elemento);
 
-          // @ts-ignore
-          const fecha: Date = new Date(this.splitByLength(elemento.fechaHora, 10)[0]);
 
         }
       }
