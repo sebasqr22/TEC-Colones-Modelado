@@ -54,8 +54,6 @@ export class CrearCentrosComponent implements OnInit{
        // @ts-ignore
        this.verificarExistenciaDeCodigo(primary);
 
-
-
          const info = {
            pk: primary,
            ...this.form.value,
@@ -65,8 +63,6 @@ export class CrearCentrosComponent implements OnInit{
 
          console.log(info);
          this.base.escribirDatos('centros/' + primary, info, this.form);
-
-
 
      } else {
        alert("Existen Datos Inválidos!!!");
