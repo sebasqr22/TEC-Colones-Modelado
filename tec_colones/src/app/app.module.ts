@@ -42,6 +42,7 @@ const appRoutes:Routes=[
         ReactiveFormsModule,
         FormsModule
     ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
