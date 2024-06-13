@@ -1,0 +1,89 @@
+<div id="verHistorial">
+  <main>
+    <form [formGroup]="form">
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Historial de Transacciones de Tec-Colones</h1>
+        <div class="form-group row">
+
+          <!-- Rango de Fechas -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="date"
+              class="form-control form-control-user"
+              id="fechaInicio"
+              placeholder="Fecha Inicio"
+              formControlName="fechaInicio"
+            />
+            <label for="fechaInicio">Fecha Inicio</label>
+            <div class="invalid-feedback">Seleccione una fecha válida.</div>
+          </div>
+
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="date"
+              class="form-control form-control-user"
+              id="fechaFin"
+              placeholder="Fecha Fin"
+              formControlName="fechaFin"
+            />
+            <label for="fechaFin">Fecha Fin</label>
+            <div class="invalid-feedback">Seleccione una fecha válida. Debe ser mayor que la fecha de inicio.</div>
+          </div>
+
+          <!-- Centro de Acopio (Select from valid options) -->
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <select
+              class="form-control form-control-user"
+              id="centroAcopio"
+              formControlName="centro"
+            >
+              <option *ngFor="let dato of centros" [ngValue]="dato">{{ dato['ubicacion'] }}</option>
+            </select>
+            <label for="centroAcopio">Centro de Acopio</label>
+            <div class="invalid-feedback">Seleccione un centro de acopio válido.</div>
+          </div>
+
+          <!-- Listado de Transacciones -->
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <table class="table table-bordered" id="tablaTransacciones">
+              <thead>
+              <tr>
+                <th>Estudiante</th>
+                <th>Cantidad de Tec-Colones</th>
+                <th>Fecha</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- Las filas de las transacciones se agregarán aquí dinámicamente -->
+              </tbody>
+            </table>
+            <label for="tablaTransacciones">Listado de Transacciones</label>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+    <div div class="container-fluid px-4">
+      <div class="form-group row">
+        <div style="margin: 0% 1% 1% 0%; height: 200px">
+            <textarea
+              style="width: 100%; height: 90%"
+              id="materiales"
+              readonly
+              [(ngModel)]="materialesTexto"
+            >
+
+            </textarea>
+
+          <br><br>
+
+          <a class="btn btn-outline-success btn-user btn-block" (click)="buscarTransacciones()">
+            Buscar
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

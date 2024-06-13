@@ -5,13 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VistaUsuarioComponent } from './vista-usuario/vista-usuario.component';
 import { VistaAdminComponent } from './vista-admin/vista-admin.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CrearMaterialesComponent } from './vista-admin/crear-materiales/crear-materiales.component';
 import { VerMaterialesComponent } from './vista-admin/ver-materiales/ver-materiales.component';
 import { CrearSedesComponent } from './vista-admin/crear-sedes/crear-sedes.component';
 import { VerSedesComponent } from './vista-admin/ver-sedes/ver-sedes.component';
 import { CrearCentrosComponent } from './vista-admin/crear-centros/crear-centros.component';
 import { VerCentrosComponent } from './vista-admin/ver-centros/ver-centros.component';
+import { AsignacionTecColonesComponent } from './vista-admin/asignacion-tec-colones/asignacion-tec-colones.component';
+import { VerHistorialCentrosComponent } from './vista-admin/ver-historial-centros/ver-historial-centros.component';
 
 
 const appRoutes:Routes=[
@@ -30,13 +32,17 @@ const appRoutes:Routes=[
     VerSedesComponent,
     CrearCentrosComponent,
     VerCentrosComponent,
+    AsignacionTecColonesComponent,
+    VerHistorialCentrosComponent,
   ],
-  imports: [
-    RouterModule.forRoot(appRoutes),
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        RouterModule.forRoot(appRoutes),
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
