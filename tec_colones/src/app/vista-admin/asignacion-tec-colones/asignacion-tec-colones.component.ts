@@ -22,11 +22,11 @@ export class AsignacionTecColonesComponent implements OnInit{
   private pk = "";
 
   form = this.fb.group({
-      sede:['', Validators.required],
-      centro:['', Validators.required],
-      carnet:['', Validators.required],
-      material:['', Validators.required],
-      cantidad:['', Validators.required]
+    sede:['', Validators.required],
+    centro:['', Validators.required],
+    carnet:['', Validators.required],
+    material:['', Validators.required],
+    cantidad:['', Validators.required]
   })
 
   cambiarCentros(){
@@ -42,7 +42,6 @@ export class AsignacionTecColonesComponent implements OnInit{
     for (let clave in this.centros_json) {
       if (this.centros_json.hasOwnProperty(clave)) {
         const elemento = this.centros_json[clave];
-        console.log(elemento);
         if(elemento['sede']['nombre'] == valor){
           this.centros_aux.push(elemento);
         }
@@ -104,7 +103,6 @@ export class AsignacionTecColonesComponent implements OnInit{
 
   agregarMaterial(){
     const valores = this.form.value;
-    console.log(valores);
     if(this.form.valid){
       const nuevo = {
         ...valores,
@@ -113,7 +111,6 @@ export class AsignacionTecColonesComponent implements OnInit{
       //this.base.escribirDatos(`historial/${valores.carnet}`, nuevo, this.form);
       // @ts-ignore
       this.listdo.push(nuevo);
-      console.log(this.listdo);
       // @ts-ignore
       this.pk = this.form.value.carnet;
       // @ts-ignore
@@ -128,12 +125,41 @@ export class AsignacionTecColonesComponent implements OnInit{
     }
   }
 
-  guardarTransaccion(){
+  generarRegistro(data: JSON) {
+    let centro = {};
+    let sede = {};
+    let json_nuevo = {};
+
+    for (let clave in data) {
+      if (data.hasOwnProperty(clave)) {
+        // @ts-ignore
+        const elemento = data[clave];
+        console.log(elemento);
+        centro = elemento["centro"];
+        sede = elemento["sede"];
+        json_nuevo = {
+          ...json_nuevo,
+          [clave]: {
+            ...elemento
+          }
+        };
+      }
+    }
+    const codigo = this.llave.generateCode("R" + this.pk);
+    // GUARDADO DE LOS DATOS EN LA BASE
+    // @ts-ignore
+    this.base.escribirDatos(`transaccion/global/${sede['pk']}/${centro['pk']}/${codigo}/`, json_nuevo, this.form);
+
+  }
+
+  guardarTransaccion() {
     let data = {
       ...JSON.parse(JSON.stringify(this.listdo)),
     }
-    const llave = this.llave.generateCode("T" + this.pk) ;
+    this.generarRegistro(data);
+    const llave = this.llave.generateCode("T" + this.pk);
     this.base.escribirDatos(`historial/${this.pk}/${llave}/`, data, this.form);
+    this.listdo = [];
     this.materialesTexto = "";
   }
   constructor(private base: DatabaseService, private fb: FormBuilder,
