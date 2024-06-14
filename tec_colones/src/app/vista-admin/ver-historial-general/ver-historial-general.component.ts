@@ -41,12 +41,15 @@ export class VerHistorialGeneralComponent implements OnInit {
             const total = cantidad * valorUnitario;
             totalTecColones += total;
 
+            // Obtener la fechaHora correcta (fuera de centro)
+            const fechaHora = transaccion.fechaHora;
+
             // Construir el objeto de transacción con los datos necesarios
             this.transacciones.push({
               id: idTransaccion,
               estudiante: transaccion.carnet,
               cantidad: cantidad,
-              fechaHora: transaccion.centro.fechaHora,
+              fechaHora: fechaHora,
               funcionario: transaccion.funcionario || 'Desconocido', // Omitir si no existe
               centro: transaccion.centro.ubicacion || 'Desconocido',
               totalTecColones: total // Agregar el total en tec-colones a cada transacción
