@@ -36,7 +36,6 @@ export class DatabaseService {
 
     // Primero, verificamos si el identificador ya existe
     get(dbRef).then((snapshot) => {
-      console.log(snapshot.exists());
       if (snapshot.exists()) {
 
         alert(`El identificador "${snapshot.val().pk}" ya existe. No se escribieron los datos.`);

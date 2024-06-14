@@ -14,7 +14,6 @@ export class VerSedesComponent {
   }
 
   crearFila(contador: number, json: JSON) {
-    console.log(json);
     const tr = document.createElement('tr');
     const th = document.createElement('th');
     th.innerText = String(contador);

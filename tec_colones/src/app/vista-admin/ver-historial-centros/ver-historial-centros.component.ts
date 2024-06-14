@@ -90,7 +90,6 @@ export class VerHistorialCentrosComponent implements OnInit {
         const elemento = objeto[clave];
         const fecha:Date = new Date(elemento.fechaHora);
 
-        console.log(elemento);
 
         if(this.rangoFecha(fecha, inicio, final) && elemento.centro.pk == this.centro){
           this.materialesTexto += `Carnet: ${elemento.carnet} \t\t\t ${elemento.material.nombre} \t\t\t ₡${Number(elemento.material.valorUnitario) * Number(elemento.cantidad)}\t\t\t ${elemento.fechaHora}\n`

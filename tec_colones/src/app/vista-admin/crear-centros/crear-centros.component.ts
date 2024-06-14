@@ -36,7 +36,6 @@ export class CrearCentrosComponent implements OnInit{
         }
       }
 
-      console.log(listaCodigos.includes(verificador));
       if(listaCodigos.includes(verificador)){
         this.codigoRepetido = true;
       }
@@ -46,7 +45,6 @@ export class CrearCentrosComponent implements OnInit{
 
 
     crearCentro() {
-     console.log(this.form.value);
      let primary;
      if (this.form.valid) {
        primary = this.form.value.codigo;
@@ -61,7 +59,6 @@ export class CrearCentrosComponent implements OnInit{
            fechaHora: this.fechaHora.getDateTime()
          };
 
-         console.log(info);
          this.base.escribirDatos('centros/' + primary, info, this.form);
 
      } else {
@@ -86,7 +83,6 @@ export class CrearCentrosComponent implements OnInit{
           this.datos.push(elemento);
         }
       }
-      console.log(this.datos);
 
     }));
   }

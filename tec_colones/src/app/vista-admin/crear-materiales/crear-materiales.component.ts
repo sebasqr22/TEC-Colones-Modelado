@@ -36,7 +36,6 @@ export class CrearMaterialesComponent {
         fechaHora: this.fechaHora.getDateTime()
       };
 
-      console.log(info);
       this.base.escribirDatos('material/' + primary, info, this.generarMaterial);
 
     } else {

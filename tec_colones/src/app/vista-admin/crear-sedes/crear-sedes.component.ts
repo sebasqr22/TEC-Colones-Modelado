@@ -32,7 +32,6 @@ export class CrearSedesComponent {
         fechaHora: this.fechaHora.getDateTime()
       };
 
-      console.log(info);
       this.base.escribirDatos('sedes/' + primary, info, this.form);
 
     } else {
