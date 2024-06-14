@@ -22,11 +22,11 @@ export class AsignacionTecColonesComponent implements OnInit{
   private pk = "";
 
   form = this.fb.group({
-      sede:['', Validators.required],
-      centro:['', Validators.required],
-      carnet:['', Validators.required],
-      material:['', Validators.required],
-      cantidad:['', Validators.required]
+    sede:['', Validators.required],
+    centro:['', Validators.required],
+    carnet:['', Validators.required],
+    material:['', Validators.required],
+    cantidad:['', Validators.required]
   })
 
   cambiarCentros(){
@@ -122,21 +122,6 @@ export class AsignacionTecColonesComponent implements OnInit{
     }
     else{
       alert("Datos Inválidos...")
-    }
-  }
-
-  recorrerJsonDentro(objeto: JSON) {
-    console.log("SE VIENEN COSITAS:")
-    console.log(objeto);
-  }
-
-  recorrerJson(objeto: JSON) {
-    for (let clave in objeto) {
-      if (objeto.hasOwnProperty(clave)) {
-        // @ts-ignore
-        const elemento = objeto[clave];
-        this.recorrerJsonDentro(elemento);
-      }
     }
   }
 
