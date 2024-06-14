@@ -42,7 +42,6 @@ export class AsignacionTecColonesComponent implements OnInit{
     for (let clave in this.centros_json) {
       if (this.centros_json.hasOwnProperty(clave)) {
         const elemento = this.centros_json[clave];
-        console.log(elemento);
         if(elemento['sede']['nombre'] == valor){
           this.centros_aux.push(elemento);
         }
@@ -104,7 +103,6 @@ export class AsignacionTecColonesComponent implements OnInit{
 
   agregarMaterial(){
     const valores = this.form.value;
-    console.log(valores);
     if(this.form.valid){
       const nuevo = {
         ...valores,
@@ -113,7 +111,6 @@ export class AsignacionTecColonesComponent implements OnInit{
       //this.base.escribirDatos(`historial/${valores.carnet}`, nuevo, this.form);
       // @ts-ignore
       this.listdo.push(nuevo);
-      console.log(this.listdo);
       // @ts-ignore
       this.pk = this.form.value.carnet;
       // @ts-ignore
@@ -144,13 +141,29 @@ export class AsignacionTecColonesComponent implements OnInit{
   }
 
   generarRegistro(data: JSON) {
+    let centro = {};
+    let sede = {};
+    let json_nuevo = {};
+
     for (let clave in data) {
       if (data.hasOwnProperty(clave)) {
         // @ts-ignore
         const elemento = data[clave];
-        this.recorrerJson(elemento);
+        console.log(elemento);
+        centro = elemento["centro"];
+        sede = elemento["sede"];
+        json_nuevo = {
+          ...json_nuevo,
+          [clave]: {
+            ...elemento
+          }
+        };
       }
     }
+    const codigo = this.llave.generateCode("R" + this.pk);
+    // GUARDADO DE LOS DATOS EN LA BASE
+    // @ts-ignore
+    this.base.escribirDatos(`transaccion/global/${sede['pk']}/${centro['pk']}/${codigo}/`, json_nuevo, this.form);
 
   }
 
