@@ -128,12 +128,40 @@ export class AsignacionTecColonesComponent implements OnInit{
     }
   }
 
-  guardarTransaccion(){
+  recorrerJsonDentro(objeto: JSON) {
+    console.log("SE VIENEN COSITAS:")
+    console.log(objeto);
+  }
+
+  recorrerJson(objeto: JSON) {
+    for (let clave in objeto) {
+      if (objeto.hasOwnProperty(clave)) {
+        // @ts-ignore
+        const elemento = objeto[clave];
+        this.recorrerJsonDentro(elemento);
+      }
+    }
+  }
+
+  generarRegistro(data: JSON) {
+    for (let clave in data) {
+      if (data.hasOwnProperty(clave)) {
+        // @ts-ignore
+        const elemento = data[clave];
+        this.recorrerJson(elemento);
+      }
+    }
+
+  }
+
+  guardarTransaccion() {
     let data = {
       ...JSON.parse(JSON.stringify(this.listdo)),
     }
-    const llave = this.llave.generateCode("T" + this.pk) ;
+    this.generarRegistro(data);
+    const llave = this.llave.generateCode("T" + this.pk);
     this.base.escribirDatos(`historial/${this.pk}/${llave}/`, data, this.form);
+    this.listdo = [];
     this.materialesTexto = "";
   }
   constructor(private base: DatabaseService, private fb: FormBuilder,
