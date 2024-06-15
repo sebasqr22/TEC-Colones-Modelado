@@ -14,7 +14,7 @@ import { CrearCentrosComponent } from './vista-admin/crear-centros/crear-centros
 import { VerCentrosComponent } from './vista-admin/ver-centros/ver-centros.component';
 import { AsignacionTecColonesComponent } from './vista-admin/asignacion-tec-colones/asignacion-tec-colones.component';
 import { VerHistorialCentrosComponent } from './vista-admin/ver-historial-centros/ver-historial-centros.component';
-
+import { AnularTransaccionComponent } from './vista-admin/anular-transaccion/anular-transaccion.component';
 
 const appRoutes:Routes=[
   {path:'', component: VistaAdminComponent},
@@ -34,6 +34,7 @@ const appRoutes:Routes=[
     VerCentrosComponent,
     AsignacionTecColonesComponent,
     VerHistorialCentrosComponent,
+    AnularTransaccionComponent,
   ],
     imports: [
         RouterModule.forRoot(appRoutes),
