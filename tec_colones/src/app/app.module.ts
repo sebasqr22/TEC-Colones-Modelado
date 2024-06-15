@@ -22,6 +22,12 @@ const appRoutes: Routes = [
   { path: 'vista-admin', component: VistaAdminComponent},
   { path: 'vista-usuario', component: VistaUsuarioComponent}
 ];
+import { AnularTransaccionComponent } from './vista-admin/anular-transaccion/anular-transaccion.component';
+import { VerHistorialGeneralComponent } from './vista-admin/ver-historial-general/ver-historial-general.component';
+
+const appRoutes:Routes=[
+  {path:'', component: VistaAdminComponent},
+]
 
 
 @NgModule({
@@ -38,6 +44,8 @@ const appRoutes: Routes = [
     AsignacionTecColonesComponent,
     VerHistorialCentrosComponent,
     LoginComponent,
+    AnularTransaccionComponent,
+    VerHistorialGeneralComponent,
   ],
     imports: [
         RouterModule.forRoot(appRoutes),

@@ -27,6 +27,21 @@ export class DatabaseService {
     }
   }
 
+  borrarDatos(ruta: string, form: FormGroup) {
+    // @ts-ignore
+    const dbRef = ref(this.database, ruta);
+
+    set(dbRef, null)
+      .then(() => {
+        alert('Datos borrados correctamente');
+        this.reiniciarDatos(false, form);
+      })
+      .catch((error) => {
+        console.error('Error al borrar datos:', error);
+        alert(`Error presente: ${error}`);
+        this.reiniciarDatos(true, form);
+      });
+  }
 
   escribirDatos(ruta: string, datos: any, form: FormGroup) {
     const identificador = datos.identificador; // Obtener el identificador del objeto datos

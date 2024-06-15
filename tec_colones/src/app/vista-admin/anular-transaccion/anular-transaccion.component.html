@@ -1,0 +1,125 @@
+<div id="crearMaterial">
+  <main>
+    <form [formGroup]="form">
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Anular Transacción</h1>
+        <div class="form-group row">
+
+          <!-- ID Transaccion (Select from valid options) -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <select
+              class="form-control form-control-user"
+              id="transaccion"
+              formControlName="transaccion"
+              (change)="cambiarInfo()"
+            >
+              <option *ngFor="let clave of claves" [ngValue]="clave">{{ clave }}</option>
+            </select>
+            <label for="transaccion">ID Transacción</label>
+          </div>
+
+
+          <!-- Nombre Sede del estudiante  -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="sede"
+              maxlength="30"
+              placeholder="Nombre Sede"
+              formControlName="sede"
+              readonly
+            />
+            <label for="sede">Nombre Sede</label>
+          </div>
+
+
+          <!-- Nombre Centro del estudiante  -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="centro"
+              maxlength="30"
+              placeholder="Nombre Centro"
+              formControlName="centro"
+              readonly
+            />
+            <label for="sede">Nombre Centro de Acopio</label>
+          </div>
+
+          <!-- Carnetdel estudiante  -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="carnet"
+              maxlength="30"
+              placeholder="Nombre Centro"
+              formControlName="carnet"
+              readonly
+            />
+            <label for="sede">Carnet Estudiante</label>
+          </div>
+
+
+          <!-- fecha   -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="fecha"
+              maxlength="30"
+              placeholder="Nombre Centro"
+              formControlName="fecha"
+              readonly
+            />
+            <label for="sede">Fecha Realización</label>
+          </div>
+
+          <!-- funcionario  -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="funcionario"
+              maxlength="30"
+              placeholder="Funcioario"
+              formControlName="funcionario"
+              readonly
+            />
+            <label for="sede">Funcionario</label>
+          </div>
+
+
+          <textarea
+            style="width: 100%; height: 90%"
+            id="materiales"
+            formControlName="material"
+            readonly
+
+          >
+
+            </textarea>
+          <label for="materiales">Listado de materiales</label>
+
+        </div>
+      </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+    <div class="container-fluid px-4">
+      <a class="btn btn-outline-success btn-user btn-block" (click)="anular()">
+        Anular
+      </a>
+    </div>
+  </main>
+</div>

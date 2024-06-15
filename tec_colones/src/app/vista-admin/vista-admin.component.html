@@ -81,6 +81,12 @@
               <i class="fa-solid fa-building" id="ver-historial-centrosi"></i>&nbsp;Ver Historial
             </a>
 
+            <a class="nav-link" id="anular-transacciona" (click)="cambiarPantalla('anular-transaccion')">
+              <i class="fa-solid fa-building" id="anular-transaccioni"></i>&nbsp;Anular Transacción
+            <a class="nav-link" id="ver-historial-generala" (click)="cambiarPantalla('ver-historial-general')">
+              <i class="fa-solid fa-building" id="ver-historial-generali"></i>&nbsp;Ver Historial General
+            </a>
+
           </div>
 
 
@@ -129,6 +135,14 @@
 
       <div *ngIf="pantalla_mostrando === 'ver-historial-centros'">
         <app-ver-historial-centros></app-ver-historial-centros>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'anular-transaccion'">
+        <app-anular-transaccion></app-anular-transaccion>
+      </div>
+
+      <div *ngIf="pantalla_mostrando === 'ver-historial-general'">
+        <app-ver-historial-general></app-ver-historial-general>
       </div>
 
       <footer class="py-4 bg-light mt-auto">
