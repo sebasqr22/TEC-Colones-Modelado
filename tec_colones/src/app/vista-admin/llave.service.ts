@@ -23,6 +23,13 @@ export class LlaveService {
         iden = 'material'
         break;
 
+      case 'R':
+        iden = 'registros'
+        break;
+
+      case 'T':
+        iden = 'asignaciones'
+        break;
 
       default:
         break;
@@ -39,24 +46,22 @@ export class LlaveService {
           this.llaves.push(elemento.pk);
         }
       }
-
-
     }));
   }
 
   generateCode(llave:string): string {
-    const length = 12
+    const length = 12;
     let result = '';
     const charactersLength = this.characters.length;
 
     this.validarExistentes(llave);
 
-    while(true){
+    while (true) {
       for (let i = 0; i < length; i++) {
         result += this.characters.charAt(Math.floor(Math.random() * charactersLength));
       }
 
-      if(!this.llaves.includes(result)){
+      if (!this.llaves.includes(result)) {
         break;
       }
     }
