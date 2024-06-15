@@ -1,9 +1,9 @@
 <div id="crearMaterial">
   <main>
     <form [formGroup]="form">
-    <div class="container-fluid px-4">
-      <h1 class="mt-4">Asignación de Tec-Colones a Estudiante</h1>
-      <div class="form-group row">
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Asignación de Tec-Colones a Estudiante</h1>
+        <div class="form-group row">
           <!-- Sede (Select from valid options) -->
           <div class="col-sm-6 mb-3 mb-sm-0">
             <select class="form-control form-control-user" id="sedex"
@@ -14,98 +14,65 @@
             <div class="invalid-feedback">Seleccione una Sede válida.</div>
           </div>
 
-
           <!-- Centro (Select from valid options) -->
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <select
-              class="form-control form-control-user"
-              id="centro"
-              formControlName="centro"
-            >
+            <select class="form-control form-control-user" id="centro"
+                    formControlName="centro">
               <option *ngFor="let dato of centros_aux" [ngValue]="dato">{{ dato['ubicacion'] }}</option>
             </select>
             <label for="centro">Centro</label>
             <div class="invalid-feedback">Seleccione un centro válido.</div>
           </div>
 
-          <!-- Carne del estudiante  -->
+          <!-- Carnet del estudiante  -->
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <input
-              type="number"
-              class="form-control form-control-user"
-              id="carneEstudiante"
-              maxlength="10"
-              placeholder="Carne del estudiante"
-              formControlName="carnet"
-            />
-            <label for="carneEstudiante">Carne del estudiante</label>
-            <div class="invalid-feedback">El carne debe tener 10 caracteres.</div>
+            <input type="number" class="form-control form-control-user" id="carneEstudiante"
+                   placeholder="Carnet del estudiante" formControlName="carnet" />
+            <label for="carneEstudiante">Carnet del estudiante</label>
+            <div class="invalid-feedback">El carnet debe tener máximo 10 caracteres y solo números.</div>
           </div>
 
           <!-- Material y Cantidad de material -->
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <select
-              class="form-control form-control-user"
-              id="material"
-              formControlName="material"
-            >
+            <select class="form-control form-control-user" id="material"
+                    formControlName="material">
               <option *ngFor="let dato of materiales" [ngValue]="dato">{{ dato['nombre'] }}</option>
             </select>
             <label for="material">Material</label>
             <div class="invalid-feedback">Seleccione un material válido.</div>
 
-            <input
-              type="number"
-              class="form-control form-control-user"
-              id="cantidadMaterial"
-              placeholder="Cantidad de material"
-              formControlName="cantidad"
-            />
+            <input type="number" class="form-control form-control-user" id="cantidadMaterial"
+                   placeholder="Cantidad de material" formControlName="cantidad" />
             <label for="cantidadMaterial">Cantidad de material</label>
-            <div class="invalid-feedback">Seleccione una cantidad válido.</div>
-
-            <br><br>
-
-
-            <br><br>
+            <div class="invalid-feedback">Seleccione una cantidad válida.</div>
           </div>
-
-
-
-
-
-
+        </div>
       </div>
-    </div>
     </form>
     <div class="container-fluid px-4">
       <div class="form-group row">
-
         <a class="btn btn-outline-success btn-user btn-block" (click)="agregarMaterial()">
           Agregar
         </a>
       </div>
-        <br> <br>
+      <br><br>
 
-        <div style="margin: 0% 1% 1% 0%; height: 50px">
-            <textarea
-              style="width: 100%; height: 90%"
-              id="materiales"
-              readonly
-              [(ngModel)]="materialesTexto"
-            >
+      <div style="margin: 0% 1% 1% 0%; height: 50px">
+        <textarea style="width: 100%; height: 90%" id="materiales"
+                  readonly [(ngModel)]="materialesTexto"></textarea>
+        <label for="materiales">Listado de materiales</label>
 
-            </textarea>
-          <label for="materiales">Listado de materiales</label>
+        <br><br>
 
-          <br><br>
-
-          <a class="btn btn-outline-success btn-user btn-block" style="margin: 0% 1% 1% 0%" (click)="guardarTransaccion()">
-            Guardar
-          </a>
-
+        <a class="btn btn-outline-success btn-user btn-block" style="margin: 0% 1% 1% 0%"
+           (click)="guardarTransaccion()">
+          Guardar
+        </a>
+        <a class="btn btn-outline-danger btn-user btn-block" style="margin: 0% 1% 1% 0%"
+           (click)="cancelarTransaccion()">
+          Cancelar
+        </a>
       </div>
-
     </div>
   </main>
 </div>

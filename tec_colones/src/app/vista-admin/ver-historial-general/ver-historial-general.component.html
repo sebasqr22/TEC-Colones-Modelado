@@ -1,0 +1,75 @@
+<div id="verHistorialGeneral">
+    <main>
+      <form [formGroup]="form">
+        <div class="container-fluid px-4">
+          <h1 class="mt-4">Historial General de Transacciones de Tec-Colones</h1>
+          <div class="form-group row">
+  
+            <!-- Rango de Fechas -->
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <input
+                type="date"
+                class="form-control form-control-user"
+                id="fechaInicio"
+                placeholder="Fecha Inicio"
+                formControlName="fechaInicio"
+              />
+              <label for="fechaInicio">Fecha Inicio</label>
+              <div class="invalid-feedback">Seleccione una fecha válida.</div>
+            </div>
+  
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <input
+                type="date"
+                class="form-control form-control-user"
+                id="fechaFin"
+                placeholder="Fecha Fin"
+                formControlName="fechaFin"
+              />
+              <label for="fechaFin">Fecha Fin</label>
+              <div class="invalid-feedback">Seleccione una fecha válida. Debe ser mayor que la fecha de inicio.</div>
+            </div>
+  
+            <!-- Listado de Transacciones -->
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <table class="table table-bordered" id="tablaTransacciones">
+                <thead>
+                <tr>
+                  <th>Identificador</th>
+                  <th>Estudiante</th>
+                  <th>Cantidad de Tec-Colones</th>
+                  <th>Fecha</th>
+                  <th>Funcionario</th>
+                  <th>Centro de Acopio</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let transaccion of transaccionesFiltradas">
+                  <td>{{ transaccion.id }}</td>
+                  <td>{{ transaccion.estudiante }}</td>
+                  <td>{{ transaccion.totalTecColones }}</td>
+                  <td>{{ transaccion.fechaHora }}</td>
+                  <td>{{ transaccion.funcionario }}</td>
+                  <td>{{ transaccion.centro }}</td>
+                </tr>
+                </tbody>
+              </table>
+              <label for="tablaTransacciones">Listado de Transacciones</label>
+            </div>
+  
+          </div>
+        </div>
+      </form>
+  
+      <div class="container-fluid px-4">
+        <div class="form-group row">
+          <div style="margin: 0% 1% 1% 0%; height: 200px">
+            <a class="btn btn-outline-success btn-user btn-block" (click)="buscarTransacciones()">
+              Buscar
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
