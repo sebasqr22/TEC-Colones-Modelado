@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp, FirebaseApp } from 'firebase/app';
-import { getDatabase, Database, ref, set, get, onValue } from 'firebase/database';
+import { getDatabase, Database, ref, set, get, onValue, child, orderByChild, equalTo, push } from 'firebase/database';
 import { formatDate } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -27,6 +27,21 @@ export class DatabaseService {
     }
   }
 
+  borrarDatos(ruta: string, form: FormGroup) {
+    // @ts-ignore
+    const dbRef = ref(this.database, ruta);
+
+    set(dbRef, null)
+      .then(() => {
+        alert('Datos borrados correctamente');
+        this.reiniciarDatos(false, form);
+      })
+      .catch((error) => {
+        console.error('Error al borrar datos:', error);
+        alert(`Error presente: ${error}`);
+        this.reiniciarDatos(true, form);
+      });
+  }
 
   escribirDatos(ruta: string, datos: any, form: FormGroup) {
     const identificador = datos.identificador; // Obtener el identificador del objeto datos
@@ -82,5 +97,91 @@ export class DatabaseService {
     this.app = initializeApp(this.firebase);
     this.database = getDatabase(this.app);
   }
+
+  async verificarEmailExistente(email: string): Promise<boolean> {
+    try {
+      // @ts-ignore
+      const usuariosRef = ref(this.database, 'usuarios');
+      const snapshot = await get(usuariosRef); 
+
+      if (snapshot.exists()) {
+        const usuarios = snapshot.val();
+
+        // Verificar si algún usuario tiene el mismo email
+        for (const usuarioKey in usuarios) {
+          if (usuarios[usuarioKey].email === email) {
+            return true; // Email ya está registrado
+          }
+        }
+      }
+
+      return false; // Email no está registrado
+    } catch (error) {
+      console.error('Error verificando email existente:', error);
+      return false; // Manejar el error apropiadamente
+    }
+  }
+
+  async registrarUsuario(email: string, password: string, tipo: string): Promise<string | null> {
+    try {
+      const emailExistente = await this.verificarEmailExistente(email);
+      if (emailExistente) {
+        console.error('El email ya está registrado.');
+        return null;
+      }
+
+      // @ts-ignore
+      const usuariosRef = ref(this.database, 'usuarios');
+      const nuevoUsuarioKey = push(usuariosRef).key; // Generar una nueva clave única
+
+      if (!nuevoUsuarioKey) {
+        throw new Error('No se pudo generar la clave única para el nuevo usuario.');
+      }
+
+      const datosUsuario = {
+        contraseña: password,
+        tipo: tipo,
+        email: email
+      };
+
+      // @ts-ignore
+      const userRef = ref(this.database, `usuarios/${nuevoUsuarioKey}`);
+      await set(userRef, datosUsuario);
+
+      return nuevoUsuarioKey; // Devolver la clave única generada
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      return null;
+    }
+  }
+  async verificarCredenciales(email: string, password: string): Promise<string | null> {
+    try {
+      // @ts-ignore
+      const usuariosRef = ref(this.database, 'usuarios');
+      const snapshot = await get(usuariosRef);
+
+      if (snapshot.exists()) {
+        const usuarios = snapshot.val();
+
+        // Buscar el usuario por email y verificar contraseña
+        for (const usuarioKey in usuarios) {
+          const usuario = usuarios[usuarioKey];
+          console.log(usuario.email)
+          console.log(usuario.contraseña)
+          if (usuario.email === email && usuario.contraseña === password) {
+            console.log(usuario.tipo)
+            return usuario.tipo; // Devolver el tipo de usuario encontrado
+          }
+        }
+      }
+
+      return null; // Usuario no encontrado o credenciales incorrectas
+    } catch (error) {
+      console.error('Error en la verificación de credenciales:', error);
+      return null;
+    }
+  }
+  
+  
 }
 
