@@ -43,6 +43,13 @@ export class AsignacionTecColonesComponent implements OnInit {
   materialesTexto: string = '';
   private pk: string = "";
 
+  form = this.fb.group({
+    sede:['', Validators.required],
+    centro:['', Validators.required],
+    carnet:['', Validators.required],
+    material:['', Validators.required],
+    cantidad:['', Validators.required]
+  })
   form: FormGroup = this.fb.group({
     sede: ['', Validators.required],
     centro: ['', Validators.required],
@@ -59,6 +66,7 @@ export class AsignacionTecColonesComponent implements OnInit {
     for (let clave in this.centros_json) {
       if (this.centros_json.hasOwnProperty(clave)) {
         const elemento = this.centros_json[clave];
+        //if(elemento['sede']['nombre'] == valor){
         if (elemento.sede.nombre === valor) {
           this.centros_aux.push(elemento);
         }
@@ -116,12 +124,20 @@ export class AsignacionTecColonesComponent implements OnInit {
         return;
       }
 
+  agregarMaterial(){
+    const valores = this.form.value;
+    if(this.form.valid){
       const nuevo = {
         ...valores,
         fechaHora: this.fechaHora.getDateTime()
       };
 
       this.listdo.push(nuevo);
+      // @ts-ignore
+      this.pk = this.form.value.carnet;
+      // @ts-ignore
+      this.materialesTexto += `${valores.material["nombre"]} \t --- \t valor: ₡${valores.material["valorUnitario"] * Number(valores.cantidad)}\n`
+
       this.pk = this.form.value.carnet as string;
       this.materialesTexto += `${valores.material.nombre} \t --- \t valor: ₡${valores.material.valorUnitario * Number(valores.cantidad)}\n`;
 
@@ -134,6 +150,39 @@ export class AsignacionTecColonesComponent implements OnInit {
     }
   }
 
+  generarRegistro(data: JSON) {
+    let centro = {};
+    let sede = {};
+    let json_nuevo = {};
+
+    for (let clave in data) {
+      if (data.hasOwnProperty(clave)) {
+        // @ts-ignore
+        const elemento = data[clave];
+        console.log(elemento);
+        centro = elemento["centro"];
+        sede = elemento["sede"];
+        json_nuevo = {
+          ...json_nuevo,
+          [clave]: {
+            ...elemento
+          }
+        };
+      }
+    }
+    const codigo = this.llave.generateCode("R" + this.pk);
+    // GUARDADO DE LOS DATOS EN LA BASE
+    // @ts-ignore
+    this.base.escribirDatos(`transaccion/global/${sede['pk']}/${centro['pk']}/${codigo}/`, json_nuevo, this.form);
+
+  }
+
+  guardarTransaccion() {
+    let data = {
+      ...JSON.parse(JSON.stringify(this.listdo)),
+    }
+    this.generarRegistro(data);
+    const llave = this.llave.generateCode("T" + this.pk);
   guardarTransaccion() {
     const data = {
       ...JSON.parse(JSON.stringify(this.listdo)),
@@ -141,6 +190,7 @@ export class AsignacionTecColonesComponent implements OnInit {
 
     const llave = this.llave.generateCode("T");
     this.base.escribirDatos(`historial/${this.pk}/${llave}/`, data, this.form);
+    this.listdo = [];
     this.materialesTexto = "";
   }
 
