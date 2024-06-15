@@ -1,0 +1,86 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0;">
+    <div style="display: flex; flex-direction: column; align-items: center; width: 400px; background-color: #fff; padding: 20px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  
+      <!-- Formulario de Login -->
+      <div style="margin-bottom: 20px;">
+        <h2 style="text-align: center;">Iniciar Sesión</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div>
+            <label for="emailLogin">Correo Electrónico:</label>
+            <input type="email" id="emailLogin" formControlName="emailLogin" required>
+            <div *ngIf="loginForm.get('emailLogin')?.errors?.['required'] && (loginForm.get('emailLogin')?.dirty || loginForm.get('emailLogin')?.touched)">
+              <div>Correo electrónico es requerido.</div>
+            </div>
+            <div *ngIf="loginForm.get('emailLogin')?.errors?.['email'] && (loginForm.get('emailLogin')?.dirty || loginForm.get('emailLogin')?.touched)">
+              <div>Correo electrónico no válido.</div>
+            </div>
+          </div>
+  
+          <div>
+            <label for="passwordLogin">Contraseña:</label>
+            <input type="password" id="passwordLogin" formControlName="passwordLogin" required>
+            <div *ngIf="loginForm.get('passwordLogin')?.errors?.['required'] && (loginForm.get('passwordLogin')?.dirty || loginForm.get('passwordLogin')?.touched)">
+              <div>Contraseña es requerida.</div>
+            </div>
+          </div>
+  
+          <button type="submit" [disabled]="loginForm.invalid" style="margin-top: 10px;">Ingresar</button>
+  
+          <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">{{ errorMessage }}</div>
+        </form>
+      </div>
+  
+      <!-- Formulario de Registro -->
+       <!--
+      <div>
+        <h2 style="text-align: center;">Registro de Usuario</h2>
+        <form [formGroup]="registroForm" (ngSubmit)="registrar()">
+          <div>
+            <label for="emailRegistro">Correo Electrónico:</label>
+            <input type="email" id="emailRegistro" formControlName="emailRegistro" required>
+            <div *ngIf="registroForm.get('emailRegistro')?.errors?.['required'] && (registroForm.get('emailRegistro')?.dirty || registroForm.get('emailRegistro')?.touched)">
+              <div>Correo electrónico es requerido.</div>
+            </div>
+            <div *ngIf="registroForm.get('emailRegistro')?.errors?.['email'] && (registroForm.get('emailRegistro')?.dirty || registroForm.get('emailRegistro')?.touched)">
+              <div>Correo electrónico no válido.</div>
+            </div>
+          </div>
+  
+          <div>
+            <label for="passwordRegistro">Contraseña:</label>
+            <input type="password" id="passwordRegistro" formControlName="passwordRegistro" required minlength="6" maxlength="12">
+            <div *ngIf="registroForm.get('passwordRegistro')?.errors?.['required'] && (registroForm.get('passwordRegistro')?.dirty || registroForm.get('passwordRegistro')?.touched)">
+              <div>Contraseña es requerida.</div>
+            </div>
+            <div *ngIf="registroForm.get('passwordRegistro')?.errors?.['minlength'] && (registroForm.get('passwordRegistro')?.dirty || registroForm.get('passwordRegistro')?.touched)">
+              <div>La contraseña debe tener al menos 6 caracteres.</div>
+            </div>
+            <div *ngIf="registroForm.get('passwordRegistro')?.errors?.['maxlength'] && (registroForm.get('passwordRegistro')?.dirty || registroForm.get('passwordRegistro')?.touched)">
+              <div>La contraseña no debe tener más de 12 caracteres.</div>
+            </div>
+          </div>
+  
+          <div>
+            <label for="tipoRegistro">Tipo de Usuario:</label>
+            <select id="tipoRegistro" formControlName="tipoRegistro" required>
+              <option value="">Seleccione...</option>
+              <option value="admin">Administrador</option>
+              <option value="estudiante">Estudiante</option>
+              <option value="centro">Centro</option>
+            </select>
+            <div *ngIf="registroForm.get('tipoRegistro')?.errors?.['required'] && (registroForm.get('tipoRegistro')?.dirty || registroForm.get('tipoRegistro')?.touched)">
+              <div>Debe seleccionar el tipo de usuario.</div>
+            </div>
+          </div>
+  
+          <button type="submit" [disabled]="registroForm.invalid" style="margin-top: 10px;">Registrar</button>
+  
+          <div *ngIf="errorMessageRegistro" style="color: red; margin-top: 10px;">{{ errorMessageRegistro }}</div>
+        </form>
+      </div>
+  
+    </div>
+    dx
+    -->
+  </div>
+  
